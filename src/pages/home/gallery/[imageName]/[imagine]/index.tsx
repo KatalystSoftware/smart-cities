@@ -10,16 +10,16 @@ const Gallery: NextPage = () => {
   const [image, setImage] = useState<StaticImageData>();
   const [title, setTitle] = useState("");
   const router = useRouter();
-  const { imageName } = router.query;
+  const { imageName, imagine } = router.query;
   const mutation = api.posts.save.useMutation();
 
   useEffect(() => {
-    if (typeof imageName === "string") {
-      import(`public/imaginations/${imageName}-after.jpg`)
+    if (typeof imageName === "string" && typeof imagine === "string") {
+      import(`public/imaginations/${imageName}-${imagine}.png`)
         .then(setImage)
         .catch(console.log);
     }
-  }, [imageName]);
+  }, [imageName, imagine]);
 
   if (typeof imageName !== "string" || !image) {
     return null;

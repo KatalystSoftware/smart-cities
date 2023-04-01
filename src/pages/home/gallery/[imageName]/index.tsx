@@ -24,7 +24,7 @@ const Gallery: NextPage = () => {
           async (variant): Promise<[PlaceVariant, StaticImageData]> => [
             variant,
             (await import(
-              `public/imaginations/${name}-${variant}.jpg`
+              `public/imaginations/${name}-${variant}.png`
             )) as StaticImageData,
           ]
         )
@@ -114,7 +114,7 @@ const Gallery: NextPage = () => {
               <UndoIcon />
             </button>
             <Link
-              href={`/home/gallery/${imageName}/imagine`}
+              href={`/home/gallery/${imageName}/${imagined}`}
               className="flex gap-2 rounded-full bg-green-600 p-5 font-semibold text-green-50 shadow-xl drop-shadow-xl"
             >
               Continue

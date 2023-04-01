@@ -12,7 +12,7 @@ const Gallery: NextPage = () => {
             className="aspect-[9/16] object-cover"
             width={216}
             height={384}
-            src={`/imaginations/${name}-original.jpg`}
+            src={`/imaginations/${name}-original.png`}
             alt={name}
           />
         </Link>
