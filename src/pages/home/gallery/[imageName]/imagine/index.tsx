@@ -5,6 +5,37 @@ import { useRouter } from "next/router";
 import NextIcon from "~/components/icons/outline/ArrowRight";
 import { api } from "~/utils/api";
 
+const mockCoordinates = {
+  "gas-station": {
+    latitude: 60.179469707555974,
+    longtitude: 24.82547910980197,
+  },
+  park: {
+    latitude: 60.173119,
+    longtitude: 24.916141,
+  },
+  "parking-lot": {
+    latitude: 60.18751822007836,
+    longtitude: 24.821056834534467,
+  },
+  roundabout: {
+    latitude: 60.188984,
+    longtitude: 24.83447,
+  },
+  "roundabout-alt": {
+    latitude: 60.188984,
+    longtitude: 24.83447,
+  },
+  wall: {
+    latitude: 60.21655,
+    longtitude: 24.82842,
+  },
+  default: {
+    latitude: 60.1841,
+    longtitude: 24.8301,
+  },
+} as const;
+
 const Gallery: NextPage = () => {
   const [image, setImage] = useState<StaticImageData>();
   const [title, setTitle] = useState("");
@@ -26,13 +57,15 @@ const Gallery: NextPage = () => {
 
   const savePost = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const coords =
+      mockCoordinates[imageName as keyof typeof mockCoordinates] ||
+      mockCoordinates.default;
     await mutation.mutateAsync({
       title,
       image: imageName,
-      latitude: 0,
-      longtitude: 0,
+      ...coords,
     });
-    await router.push("/my-ideas");
+    await router.push("/ideas");
   };
 
   return (

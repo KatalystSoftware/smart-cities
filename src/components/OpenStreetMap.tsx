@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { LatLng } from "leaflet";
 import L from "leaflet";
@@ -40,7 +41,17 @@ const OpenStreetMap: React.FC<{ posts: Post[] }> = ({ posts }) => {
           key={post.id}
           position={new LatLng(post.latitude, post.longtitude)}
         >
-          <Popup>{post.title}</Popup>
+          <Popup>
+            <span className="text-lg font-medium text-green-950">
+              {post.title}
+            </span>
+            <Image
+              src={`/imaginations/${post.image}-after.jpg`}
+              alt={post.image}
+              width={200}
+              height={200}
+            />
+          </Popup>
         </Marker>
       ))}
     </MapContainer>
