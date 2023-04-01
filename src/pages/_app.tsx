@@ -61,7 +61,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
             </li>
             <li
               aria-current={
-                asPath === "/" || asPath === "/home" ? "page" : "false"
+                asPath === "/" || asPath.split("/").at(1) === "home"
+                  ? "page"
+                  : "false"
               }
               className="w-24 rounded-xl px-2 py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
