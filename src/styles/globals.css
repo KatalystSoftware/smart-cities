@@ -13,7 +13,7 @@
     @apply bg-green-50;
   }
 
-  .h-navshit {
+  .navshit {
     padding-bottom: env(safe-area-inset-bottom)
   }
 }
