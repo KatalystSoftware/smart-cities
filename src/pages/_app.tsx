@@ -2,13 +2,15 @@ import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
 
 import { api } from "~/utils/api";
-
 import "~/styles/globals.css";
-import Link from "next/link";
 import ArrowLeftIcon from "~/components/icons/ArrowLeft";
+import CogSixToothIcon from "~/components/icons/CogSixTooth";
+import PaintBrushIcon from "~/components/icons/PaintBrush";
+import LightBulbIcon from "~/components/icons/LightBulb";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -34,7 +36,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <Link href={"/"}>
             <h1 className="inline-flex items-center gap-2">
               <ArrowLeftIcon />
-              {asPath.slice(1)}
+              {asPath.slice(1).replaceAll("-", " ")}
             </h1>
           </Link>
         )}
@@ -42,22 +44,43 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <main className="flex min-h-screen flex-col items-center justify-center">
         <Component {...pageProps} />
       </main>
-      <footer className="fixed bottom-0 flex h-16 w-screen items-center justify-center bg-green-600 text-lg text-green-950">
+      <footer className="fixed bottom-0 flex h-16 w-screen items-center justify-center bg-green-600 text-green-950">
         <nav>
           <ul className="flex gap-2">
+            <li
+              aria-current={asPath === "/my-ideas" ? "page" : "false"}
+              className="px- w-24 rounded-xl  py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
+            >
+              <Link
+                className="flex flex-col items-center gap-1"
+                href="/my-ideas"
+              >
+                <LightBulbIcon />
+                My Ideas
+              </Link>
+            </li>
             <li
               aria-current={
                 asPath === "/" || asPath === "/home" ? "page" : "false"
               }
-              className="rounded-xl px-3 py-2 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
+              className="w-24 rounded-xl px-2 py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
-              <Link href="/home">Home</Link>
+              <Link className="flex flex-col items-center gap-1" href="/home">
+                <PaintBrushIcon />
+                Imagine
+              </Link>
             </li>
             <li
               aria-current={asPath === "/settings" ? "page" : "false"}
-              className="rounded-xl px-3 py-2 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
+              className="px- w-24 rounded-xl  py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
-              <Link href="/settings">Settings</Link>
+              <Link
+                className="flex flex-col items-center gap-1"
+                href="/settings"
+              >
+                <CogSixToothIcon />
+                Settings
+              </Link>
             </li>
           </ul>
         </nav>
