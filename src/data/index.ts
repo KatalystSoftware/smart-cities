@@ -8,8 +8,8 @@ export const mockPlaces = {
     variants: ["original", "field", "flowers", "skatepark"],
   },
   koff: {
-    latitude: 60.173119,
-    longtitude: 24.916141,
+    latitude: 60.16108,
+    longtitude: 24.93413,
     variants: ["original", "bush", "flowers", "playground"],
   },
   tuas: {
