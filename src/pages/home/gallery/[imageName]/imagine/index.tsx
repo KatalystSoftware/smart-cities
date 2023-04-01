@@ -87,7 +87,10 @@ const Gallery: NextPage = () => {
           onChange={(e) => setTitle(e.target.value)}
           className="w-full rounded-full bg-green-50 p-6 text-green-950 shadow-xl drop-shadow-xl"
         />
-        <button className="absolute right-1 flex items-center gap-2 rounded-full bg-green-600 p-5 font-semibold text-green-50 shadow-xl drop-shadow-xl">
+        <button
+          disabled={mutation.isLoading}
+          className="absolute right-1 flex items-center gap-2 rounded-full bg-green-600 p-5 font-semibold text-green-50 shadow-xl drop-shadow-xl disabled:bg-gray-500 disabled:text-gray-600 disabled:opacity-50"
+        >
           <NextIcon />
         </button>
       </form>
