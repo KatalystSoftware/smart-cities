@@ -1,7 +1,7 @@
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
 
@@ -29,19 +29,19 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <meta name="theme-color" content="#16a34a" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
-      <header className="fixed top-0 flex h-14 w-screen items-center bg-green-600 px-2 text-2xl font-medium capitalize text-green-950">
+      <header className="fixed top-0 flex h-14 w-screen items-center bg-green-600 px-2 text-2xl font-medium text-green-950">
         {asPath === "/" || asPath === "/home" ? (
           <h1>Home</h1>
         ) : (
-          <Link href={"/"}>
+          <button onClick={Router.back} className="capitalize">
             <h1 className="inline-flex items-center gap-2">
               <ArrowLeftIcon />
               {asPath.split("/").pop()?.replaceAll("-", " ")}
             </h1>
-          </Link>
+          </button>
         )}
       </header>
-      <main className="flex min-h-screen flex-col items-center justify-center">
+      <main className="fixed top-[theme(space.14)] flex min-h-[calc(100vh-theme(space.14)-theme(space.16))] w-screen flex-col items-center justify-center">
         <Component {...pageProps} />
       </main>
       <footer className="fixed bottom-0 flex h-16 w-screen items-center justify-center bg-green-600 text-green-950">
@@ -49,7 +49,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <ul className="flex gap-2">
             <li
               aria-current={asPath === "/my-ideas" ? "page" : "false"}
-              className="px- w-24 rounded-xl  py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
+              className="w-24 rounded-xl px-2  py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
               <Link
                 className="flex flex-col items-center gap-1"
