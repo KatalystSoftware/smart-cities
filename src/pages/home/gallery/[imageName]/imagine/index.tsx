@@ -29,6 +29,8 @@ const Gallery: NextPage = () => {
     await mutation.mutateAsync({
       title,
       image: imageName,
+      latitude: 0,
+      longtitude: 0,
     });
     await router.push("/my-ideas");
   };
