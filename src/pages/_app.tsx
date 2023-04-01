@@ -56,10 +56,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
             >
               <Link
                 className="flex flex-col items-center gap-1"
-                href="/my-ideas"
+                href="/ideas"
               >
                 <LightBulbIcon />
-                My Ideas
+                Idea Map
               </Link>
             </li>
             <li
