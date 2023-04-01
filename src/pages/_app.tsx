@@ -44,7 +44,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           </button>
         )}
       </header>
-      <main className="fixed top-[theme(space.14)] flex min-h-[calc(100vh-theme(space.14)-theme(space.16))] w-screen flex-col items-center justify-center bg-gradient-to-b from-lime-200 via-lime-100 to-green-100">
+      <main className="fixed top-[theme(space.14)] flex min-h-[calc(100dvh-theme(space.14)-theme(space.16))] w-screen flex-col items-center justify-center bg-gradient-to-b from-lime-200 via-lime-100 to-green-100">
         <Component {...pageProps} />
       </main>
       <footer className="fixed bottom-0 flex h-[calc(4rem+env(safe-area-inset-bottom))] w-screen justify-center bg-gradient-to-r from-green-400 via-green-600 to-green-400 pt-1 text-green-950">
