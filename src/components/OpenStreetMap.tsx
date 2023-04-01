@@ -85,7 +85,7 @@ const OpenStreetMap: React.FC<{
           position={new LatLng(posts.at(0)!.latitude, posts.at(0)!.longtitude)}
         >
           <Popup>
-            <div className="flex h-64 w-48 flex-col gap-2 overflow-y-scroll">
+            <div className="flex max-h-80 w-48 flex-col gap-2 overflow-y-scroll">
               {posts.map((post) => (
                 <div key={post.id}>
                   <span className="text-xl font-medium text-green-950">
