@@ -2,40 +2,35 @@
 // place = object key in mockPlaces
 
 export const mockPlaces = {
-  "gas-station": {
+  miestentie: {
     latitude: 60.179469707555974,
     longtitude: 24.82547910980197,
-    variants: ["before", "after"],
+    variants: ["original", "field", "flowers", "skatepark"],
   },
-  park: {
+  koff: {
     latitude: 60.173119,
     longtitude: 24.916141,
-    variants: ["before", "after"],
+    variants: ["original", "bush", "flowers", "playground"],
   },
-  "parking-lot": {
+  tuas: {
     latitude: 60.18751822007836,
     longtitude: 24.821056834534467,
-    variants: ["before", "after"],
+    variants: ["original", "field", "flowers", "playground"],
   },
-  roundabout: {
+  otaniemi: {
     latitude: 60.188984,
     longtitude: 24.83447,
-    variants: ["before", "after"],
+    variants: ["original", "flowers", "tree", "windmill"],
   },
-  "roundabout-alt": {
-    latitude: 60.188984,
-    longtitude: 24.83447,
-    variants: ["before", "after"],
+  urheilupuisto: {
+    latitude: 60.17373,
+    longtitude: 24.77936,
+    variants: ["original", "onelane", "bike", "tram"],
   },
-  wall: {
+  vermo: {
     latitude: 60.21655,
     longtitude: 24.82842,
-    variants: ["before", "after"],
-  },
-  default: {
-    latitude: 60.1841,
-    longtitude: 24.8301,
-    variants: ["before", "after"],
+    variants: ["original", "vines", "lush", "fence"],
   },
 } as const;
 

@@ -27,8 +27,7 @@ const Gallery: NextPage = () => {
 
   const savePost = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const coords =
-      mockPlaces[imageName as keyof typeof mockPlaces] || mockPlaces.default;
+    const coords = mockPlaces[imageName as keyof typeof mockPlaces];
     await mutation.mutateAsync({
       title,
       image: imageName,

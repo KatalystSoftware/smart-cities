@@ -14,8 +14,7 @@ const Gallery: NextPage = () => {
   const [imagined, setImagined] = useState<PlaceVariant | false>(false);
   const router = useRouter();
   const { imageName } = router.query;
-  const place =
-    mockPlaces[imageName as keyof typeof mockPlaces] || mockPlaces.default;
+  const place = mockPlaces[imageName as keyof typeof mockPlaces];
 
   useEffect(() => {
     const importImages = async (name: string) => {
@@ -41,12 +40,7 @@ const Gallery: NextPage = () => {
     }
   }, [imageName, place]);
 
-  if (
-    typeof imageName !== "string" ||
-    !images ||
-    !images.before ||
-    !images.after
-  ) {
+  if (typeof imageName !== "string" || !images || !Object.keys(images).length) {
     return null;
   }
 
@@ -57,7 +51,7 @@ const Gallery: NextPage = () => {
           <Image
             fill
             className="aspect-[9/16] object-cover"
-            src={images.before}
+            src={images.original}
             alt={imageName}
           />
           <DropdownMenu.Root>
@@ -74,16 +68,19 @@ const Gallery: NextPage = () => {
                 <DropdownMenu.Label className="mb-2 text-lg font-medium">
                   Imagine...
                 </DropdownMenu.Label>
-                {place.variants.map((variant) => (
-                  <DropdownMenu.Item key={variant}>
-                    <button
-                      className="my-1 italic"
-                      onClick={() => setImagined(variant)}
-                    >
-                      {variant}
-                    </button>
-                  </DropdownMenu.Item>
-                ))}
+                {place.variants.map(
+                  (variant) =>
+                    variant !== "original" && (
+                      <DropdownMenu.Item key={variant}>
+                        <button
+                          className="my-1 italic"
+                          onClick={() => setImagined(variant)}
+                        >
+                          {variant}
+                        </button>
+                      </DropdownMenu.Item>
+                    )
+                )}
                 <DropdownMenu.Separator className="my-2 h-px bg-green-900 " />
                 <DropdownMenu.Item>
                   <button
