@@ -4,7 +4,9 @@ import Image, { type StaticImageData } from "next/image";
 import { useRouter } from "next/router";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import PaintBrushIcon from "~/components/icons/outline/PaintBrush";
-import XMarkIcon from "~/components/icons/outline/XMark";
+import UndoIcon from "~/components/icons/outline/ArrowUturnLeft";
+import NextIcon from "~/components/icons/outline/ArrowRight";
+import Link from "next/link";
 
 const Gallery: NextPage = () => {
   const [images, setImages] = useState<{
@@ -31,7 +33,7 @@ const Gallery: NextPage = () => {
     if (typeof imageName === "string") {
       importImages(imageName).then(setImages).catch(console.log);
     }
-  }, [imageName, imagined]);
+  }, [imageName]);
 
   if (
     typeof imageName !== "string" ||
@@ -111,13 +113,22 @@ const Gallery: NextPage = () => {
             src={images.after}
             alt={imageName}
           />
-          <button
-            aria-label="Cancel..."
-            onClick={() => setImagined(false)}
-            className="absolute bottom-4 right-4 rounded-full bg-green-600 p-5 text-green-50 shadow-xl drop-shadow-xl"
-          >
-            <XMarkIcon />
-          </button>
+          <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+            <button
+              aria-label="Undo"
+              onClick={() => setImagined(false)}
+              className="self-end rounded-full bg-green-400 p-5 text-green-800 shadow-lg drop-shadow-lg"
+            >
+              <UndoIcon />
+            </button>
+            <Link
+              href={`/home/gallery/${imageName}/imagine`}
+              className="flex gap-2 rounded-full bg-green-600 p-5 font-semibold text-green-50 shadow-xl drop-shadow-xl"
+            >
+              Continue
+              <NextIcon />
+            </Link>
+          </div>
         </>
       )}
     </div>
