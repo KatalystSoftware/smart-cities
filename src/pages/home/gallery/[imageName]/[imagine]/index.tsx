@@ -33,7 +33,9 @@ const Gallery: NextPage = () => {
       image: imageName,
       ...coords,
     });
-    await router.push("/ideas");
+    await router.push(
+      `/ideas?latitude=${coords.latitude}&longtitude=${coords.longtitude}`
+    );
   };
 
   return (

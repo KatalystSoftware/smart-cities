@@ -39,7 +39,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <button onClick={Router.back} className="capitalize">
             <h1 className="inline-flex items-center gap-2">
               <ArrowLeftIcon />
-              {asPath.split("/").pop()?.replaceAll("-", " ")}
+              {asPath.split("/").pop()?.replaceAll("-", " ").split("?").at(0)}
             </h1>
           </button>
         )}
@@ -51,13 +51,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <nav>
           <ul className="flex gap-2">
             <li
-              aria-current={asPath === "/my-ideas" ? "page" : "false"}
+              aria-current={
+                asPath.split("?").at(0) === "/ideas" ? "page" : "false"
+              }
               className="w-24 rounded-xl px-2  py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
-              <Link
-                className="flex flex-col items-center gap-1"
-                href="/ideas"
-              >
+              <Link className="flex flex-col items-center gap-1" href="/ideas">
                 <LightBulbIcon />
                 Idea Map
               </Link>
@@ -70,7 +69,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
               }
               className="w-24 rounded-xl px-2 py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
-              <Link className="flex flex-col items-center gap-1" href="/home"> 
+              <Link className="flex flex-col items-center gap-1" href="/home">
                 <PaintBrushIcon />
                 Imagine
               </Link>

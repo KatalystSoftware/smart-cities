@@ -27,7 +27,10 @@ L.Icon.Default.mergeOptions({
 // const espooPosition = new LatLng(60.1841, 24.8301);
 const roundaboutPosition = new LatLng(60.188984, 24.83447);
 
-const OpenStreetMap: React.FC<{ posts: Post[] }> = ({ posts }) => {
+const OpenStreetMap: React.FC<{
+  posts: Post[];
+  initialLocation?: { latitude: number; longtitude: number };
+}> = ({ posts, initialLocation }) => {
   const utils = api.useContext();
 
   const like = api.posts.like.useMutation({
@@ -54,7 +57,11 @@ const OpenStreetMap: React.FC<{ posts: Post[] }> = ({ posts }) => {
 
   return (
     <MapContainer
-      center={roundaboutPosition}
+      center={
+        initialLocation
+          ? new LatLng(initialLocation.latitude, initialLocation.longtitude)
+          : roundaboutPosition
+      }
       zoom={18}
       scrollWheelZoom={true}
       style={{ width: "100%", height: "calc(100vh - 4rem)" }}
