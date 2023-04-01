@@ -27,7 +27,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <meta name="theme-color" content="#16a34a" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
-      <header className="fixed top-0 flex h-12 w-screen items-center bg-green-600 px-2 text-xl capitalize text-green-50">
+      <header className="fixed top-0 flex h-12 w-screen items-center bg-green-600 px-2 text-xl capitalize text-green-950">
         {asPath === "/" || asPath === "/home" ? (
           <h1>Home</h1>
         ) : (
@@ -42,20 +42,20 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <main className="flex min-h-screen flex-col items-center justify-center">
         <Component {...pageProps} />
       </main>
-      <footer className="fixed bottom-0 flex h-12 w-screen items-center justify-center bg-green-600 text-lg">
+      <footer className="fixed bottom-0 flex h-12 w-screen items-center justify-center bg-green-600 text-lg text-green-950">
         <nav>
           <ul className="flex gap-2">
             <li
               aria-current={
                 asPath === "/" || asPath === "/home" ? "page" : "false"
               }
-              className="rounded-xl px-3 py-1  aria-[current=page]:bg-green-700 aria-[current=page]:text-green-200 aria-[current=page]:shadow-md"
+              className="rounded-xl px-3 py-1  aria-[current=page]:bg-green-800 aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
               <Link href="/home">Home</Link>
             </li>
             <li
               aria-current={asPath === "/settings" ? "page" : "false"}
-              className="rounded-xl px-3 py-1  aria-[current=page]:bg-green-700 aria-[current=page]:text-green-200 aria-[current=page]:shadow-md"
+              className="rounded-xl px-3 py-1  aria-[current=page]:bg-green-800 aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
               <Link href="/settings">Settings</Link>
             </li>
