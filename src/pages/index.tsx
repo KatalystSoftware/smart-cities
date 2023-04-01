@@ -31,7 +31,7 @@ const Home: NextPage = () => {
       <div className="flex flex-col items-center justify-center gap-4">
         <p className="text-center text-2xl text-black">You are not signed in</p>
         <button
-          className="rounded-full bg-black/10 px-10 py-3 font-semibold text-black no-underline transition hover:bg-black/20"
+          className="disabled:drop-shadow-mdflex flex gap-4 rounded-full bg-green-300 bg-gradient-rd from-green-400 via-green-400 to-green-500 px-6 py-4 text-lg font-semibold opacity-70 shadow-md drop-shadow-lg disabled:bg-stone-200 disabled:from-stone-300 disabled:via-stone-200 disabled:to-stone-200 disabled:text-stone-800 disabled:shadow-inner disabled:drop-shadow-md"
           onClick={() => void signIn()}
         >
           Sign in
