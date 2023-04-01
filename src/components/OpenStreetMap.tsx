@@ -28,9 +28,29 @@ L.Icon.Default.mergeOptions({
 const roundaboutPosition = new LatLng(60.188984, 24.83447);
 
 const OpenStreetMap: React.FC<{ posts: Post[] }> = ({ posts }) => {
-  const like = api.posts.like.useMutation();
-  const dislike = api.posts.dislike.useMutation();
+  const utils = api.useContext();
+
+  const like = api.posts.like.useMutation({
+    onSettled: async () => {
+      await utils.invalidate();
+    },
+  });
+  const dislike = api.posts.dislike.useMutation({
+    onSettled: async () => {
+      await utils.invalidate();
+    },
+  });
   const { data: session } = useSession();
+
+  const ratePost = async (postId: string, liked: boolean) => {
+    if (liked) {
+      await like.mutateAsync({ postId });
+    } else {
+      await dislike.mutateAsync({ postId });
+    }
+  };
+
+  const loading = like.isLoading || dislike.isLoading;
 
   return (
     <MapContainer
@@ -63,15 +83,17 @@ const OpenStreetMap: React.FC<{ posts: Post[] }> = ({ posts }) => {
               !post.dislikedById.includes(session?.user.id as string) ? (
                 <div className="flex gap-2">
                   <button
-                    onClick={() => like.mutate({ postId: post.id })}
-                    className="text-green-500"
+                    disabled={loading}
+                    onClick={() => void ratePost(post.id, true)}
+                    className="text-green-500 disabled:text-gray-500 disabled:opacity-50"
                   >
                     <ThumbsUpIcon />
                     Like
                   </button>
                   <button
-                    onClick={() => dislike.mutate({ postId: post.id })}
-                    className="text-red-500"
+                    disabled={loading}
+                    onClick={() => void ratePost(post.id, false)}
+                    className="text-red-500 disabled:text-gray-500 disabled:opacity-50"
                   >
                     <ThumbsDownIcon />
                     Dislike
