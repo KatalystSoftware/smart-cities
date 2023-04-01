@@ -29,7 +29,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <meta name="theme-color" content="#16a34a" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
-      <header className="fixed top-0 flex h-14 w-screen items-center bg-green-600 px-2 text-2xl font-medium text-green-950">
+      <header className="bg-gradient-to-r from-green-500 via-green-500 to-green-400 fixed top-0 flex h-14 w-screen items-center bg-green-600 px-2 text-2xl font-medium text-green-950">
         {asPath === "/" || asPath === "/home" ? (
           <h1>Home</h1>
         ) : (
@@ -41,10 +41,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
           </button>
         )}
       </header>
-      <main className="fixed top-[theme(space.14)] flex min-h-[calc(100vh-theme(space.14)-theme(space.16))] w-screen flex-col items-center justify-center">
+      <main className="bg-gradient-to-b from-lime-200 via-lime-100 to-green-100 fixed top-[theme(space.14)] flex min-h-[calc(100vh-theme(space.14)-theme(space.16))] w-screen flex-col items-center justify-center">
         <Component {...pageProps} />
       </main>
-      <footer className="fixed bottom-0 flex h-16 w-screen items-center justify-center bg-green-600 text-green-950 navshit">
+      <footer className="fixed bottom-0 flex h-16 w-screen items-center justify-center bg-gradient-to-r from-green-400 via-green-600 to-green-400 text-green-950 navshit">
         <nav>
           <ul className="flex gap-2">
             <li
