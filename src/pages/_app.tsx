@@ -44,7 +44,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <main className="bg-gradient-to-b from-lime-200 via-lime-100 to-green-100 fixed top-[theme(space.14)] flex min-h-[calc(100vh-theme(space.14)-theme(space.16))] w-screen flex-col items-center justify-center">
         <Component {...pageProps} />
       </main>
-      <footer className="fixed bottom-0 flex h-16 w-screen items-center justify-center bg-gradient-to-r from-green-400 via-green-600 to-green-400 text-green-950 navshit">
+      <footer className="fixed bottom-0 flex h-[calc(4rem+env(safe-area-inset-bottom))] w-screen items-center justify-center bg-gradient-to-r from-green-400 via-green-600 to-green-400 text-green-950">
         <nav>
           <ul className="flex gap-2">
             <li

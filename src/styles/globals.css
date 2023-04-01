@@ -13,7 +13,4 @@
     @apply bg-green-50;
   }
 
-  .navshit {
-    padding-bottom: env(safe-area-inset-bottom, 94px) !important;
-  }
 }
