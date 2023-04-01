@@ -46,9 +46,6 @@ dependencies:
   react-leaflet:
     specifier: ^4.2.1
     version: 4.2.1(leaflet@1.9.3)(react-dom@18.2.0)(react@18.2.0)
-  react-leaflet-universal:
-    specifier: ^2.2.1
-    version: 2.2.1(prop-types@15.8.1)(react-dom@18.2.0)(react-leaflet@4.2.1)(react@18.2.0)
   superjson:
     specifier: 1.12.2
     version: 1.12.2
@@ -4775,6 +4772,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+    dev: true
 
   /punycode@2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
@@ -4806,20 +4804,7 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-
-  /react-leaflet-universal@2.2.1(prop-types@15.8.1)(react-dom@18.2.0)(react-leaflet@4.2.1)(react@18.2.0):
-    resolution: {integrity: sha512-5eXeAylLcHQSjD06DV6Po98NntShXVI47Kj+uZQSG0byfJDbbFOHFPCLcVZa7kY/TAqXuQq8BK4RyV7kPhf70A==}
-    peerDependencies:
-      prop-types: ^15.5.7
-      react: ^15.x || ^16.x
-      react-dom: ^15.x || ^16.x
-      react-leaflet: ^2.0.1
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-leaflet: 4.2.1(leaflet@1.9.3)(react-dom@18.2.0)(react@18.2.0)
-    dev: false
+    dev: true
 
   /react-leaflet@4.2.1(leaflet@1.9.3)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-p9chkvhcKrWn/H/1FFeVSqLdReGwn2qmiobOQGO3BifX+/vV/39qhY8dGqbdcPh1e6jxh/QHriLXr7a4eLFK4Q==}

@@ -70,7 +70,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
               }
               className="w-24 rounded-xl px-2 py-1 aria-[current=page]:bg-green-800 aria-[current=page]:font-medium aria-[current=page]:text-green-100 aria-[current=page]:shadow-md"
             >
-              <Link className="flex flex-col items-center gap-1" href="/home">
+              <Link className="flex flex-col items-center gap-1" href="/home"> 
                 <PaintBrushIcon />
                 Imagine
               </Link>
