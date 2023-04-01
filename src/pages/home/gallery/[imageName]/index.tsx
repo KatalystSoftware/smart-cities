@@ -7,33 +7,39 @@ import PaintBrushIcon from "~/components/icons/outline/PaintBrush";
 import UndoIcon from "~/components/icons/outline/ArrowUturnLeft";
 import NextIcon from "~/components/icons/outline/ArrowRight";
 import Link from "next/link";
+import { mockPlaces, type PlaceVariant } from "~/data";
 
 const Gallery: NextPage = () => {
-  const [images, setImages] = useState<{
-    before: StaticImageData;
-    after: StaticImageData;
-  }>();
-  const [imagined, setImagined] = useState(false);
+  const [images, setImages] = useState<Record<PlaceVariant, StaticImageData>>();
+  const [imagined, setImagined] = useState<PlaceVariant | false>(false);
   const router = useRouter();
   const { imageName } = router.query;
+  const place =
+    mockPlaces[imageName as keyof typeof mockPlaces] || mockPlaces.default;
 
   useEffect(() => {
     const importImages = async (name: string) => {
-      const beforeImage = (await import(
-        `public/imaginations/${name}-before.jpg`
-      )) as StaticImageData;
-      const afterImage = (await import(
-        `public/imaginations/${name}-after.jpg`
-      )) as StaticImageData;
-      return {
-        before: beforeImage,
-        after: afterImage,
-      };
+      const variantImages = await Promise.all(
+        place.variants.map(
+          async (variant): Promise<[PlaceVariant, StaticImageData]> => [
+            variant,
+            (await import(
+              `public/imaginations/${name}-${variant}.jpg`
+            )) as StaticImageData,
+          ]
+        )
+      );
+
+      return Object.fromEntries(variantImages) as Record<
+        PlaceVariant,
+        StaticImageData
+      >;
     };
+
     if (typeof imageName === "string") {
       importImages(imageName).then(setImages).catch(console.log);
     }
-  }, [imageName]);
+  }, [imageName, place]);
 
   if (
     typeof imageName !== "string" ||
@@ -68,35 +74,21 @@ const Gallery: NextPage = () => {
                 <DropdownMenu.Label className="mb-2 text-lg font-medium">
                   Imagine...
                 </DropdownMenu.Label>
-                <DropdownMenu.Item>
-                  <button
-                    className="my-1 italic"
-                    onClick={() => setImagined(true)}
-                  >
-                    flowers
-                  </button>
-                </DropdownMenu.Item>
-                <DropdownMenu.Item>
-                  <button
-                    className="my-1 italic"
-                    onClick={() => setImagined(true)}
-                  >
-                    greenery
-                  </button>
-                </DropdownMenu.Item>
-                <DropdownMenu.Item>
-                  <button
-                    className="my-1 italic"
-                    onClick={() => setImagined(true)}
-                  >
-                    decorations
-                  </button>
-                </DropdownMenu.Item>
+                {place.variants.map((variant) => (
+                  <DropdownMenu.Item key={variant}>
+                    <button
+                      className="my-1 italic"
+                      onClick={() => setImagined(variant)}
+                    >
+                      {variant}
+                    </button>
+                  </DropdownMenu.Item>
+                ))}
                 <DropdownMenu.Separator className="my-2 h-px bg-green-900 " />
                 <DropdownMenu.Item>
                   <button
                     className="my-1 italic"
-                    onClick={() => setImagined(true)}
+                    onClick={() => setImagined(false)}
                   >
                     something else
                   </button>
@@ -110,7 +102,7 @@ const Gallery: NextPage = () => {
           <Image
             fill
             className="aspect-[9/16] object-cover"
-            src={images.after}
+            src={images[imagined]}
             alt={imageName}
           />
           <div className="absolute bottom-4 right-4 flex flex-col gap-2">
