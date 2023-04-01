@@ -21,7 +21,7 @@ const Gallery: NextPage = () => {
     }
   }, [imageName, imagine]);
 
-  if (typeof imageName !== "string" || !image) {
+  if (typeof imageName !== "string" || !image || typeof imagine !== "string") {
     return null;
   }
 
@@ -30,6 +30,7 @@ const Gallery: NextPage = () => {
     const coords = mockPlaces[imageName as keyof typeof mockPlaces];
     await mutation.mutateAsync({
       title,
+      variant: imagine,
       image: imageName,
       ...coords,
     });

@@ -72,6 +72,7 @@ model Post {
     image        String
     latitude     Float
     longtitude   Float
+    variant      String
     author       User     @relation("AuthoredPosts", fields: [authorId], references: [id])
     authorId     String
     likedBy      User[]   @relation("LikedPosts")

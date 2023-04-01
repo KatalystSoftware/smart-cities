@@ -81,7 +81,7 @@ const OpenStreetMap: React.FC<{
                 {post.title}
               </span>
               <Image
-                src={`/imaginations/${post.image}-after.jpg`}
+                src={`/imaginations/${post.image}-${post.variant}.png`}
                 alt={post.image}
                 width={192}
                 height={192}

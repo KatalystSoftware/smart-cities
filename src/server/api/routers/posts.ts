@@ -14,6 +14,7 @@ export const postsRouter = createTRPCRouter({
         image: z.string(),
         latitude: z.number(),
         longtitude: z.number(),
+        variant: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
