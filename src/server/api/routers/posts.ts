@@ -26,4 +26,46 @@ export const postsRouter = createTRPCRouter({
 
       return post;
     }),
+
+  like: protectedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const post = await ctx.prisma.post.update({
+        where: {
+          id: input.postId,
+        },
+        data: {
+          likedById: {
+            push: ctx.session.user.id,
+          },
+        },
+      });
+
+      return post;
+    }),
+
+  dislike: protectedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const post = await ctx.prisma.post.update({
+        where: {
+          id: input.postId,
+        },
+        data: {
+          dislikedById: {
+            push: ctx.session.user.id,
+          },
+        },
+      });
+
+      return post;
+    }),
 });

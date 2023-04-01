@@ -51,7 +51,9 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    Post          Post[]
+    posts         Post[]    @relation("AuthoredPosts")
+    likedPosts    Post[]    @relation("LikedPosts")
+    dislikedPosts Post[]    @relation("DislikedPosts")
 }
 
 model VerificationToken {
@@ -63,13 +65,17 @@ model VerificationToken {
 }
 
 model Post {
-    id         String   @id @default(cuid())
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @updatedAt
-    title      String
-    image      String
-    latitude   Float
-    longtitude Float
-    author     User     @relation(fields: [authorId], references: [id])
-    authorId   String
+    id           String   @id @default(cuid())
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+    title        String
+    image        String
+    latitude     Float
+    longtitude   Float
+    author       User     @relation("AuthoredPosts", fields: [authorId], references: [id])
+    authorId     String
+    likedBy      User[]   @relation("LikedPosts")
+    likedById    String[] @default([])
+    dislikedBy   User[]   @relation("DislikedPosts")
+    dislikedById String[] @default([])
 }
