@@ -26,7 +26,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#16a34a" />
+        <meta name="theme-color" content="#22c55e" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <header className="bg-gradient-to-r from-green-500 via-green-500 to-green-400 fixed top-0 flex h-14 w-screen items-center bg-green-600 px-2 text-2xl font-medium text-green-950">
