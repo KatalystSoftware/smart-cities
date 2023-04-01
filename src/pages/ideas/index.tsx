@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import dynamic from "next/dynamic";
 import { api } from "~/utils/api";
 
-const OpenStreetMap = dynamic(() => import("./OpenStreetMap"), {
+const OpenStreetMap = dynamic(() => import("~/components/OpenStreetMap"), {
   ssr: false,
 });
 

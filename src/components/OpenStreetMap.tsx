@@ -9,6 +9,9 @@ import type { AppRouter } from "~/server/api/root";
 
 type Post = inferRouterOutputs<AppRouter>["posts"]["getAll"][0];
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - this is a hack to fix the broken leaflet icons
+delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon.src,
   iconRetinaUrl: markerIcon2x.src,
