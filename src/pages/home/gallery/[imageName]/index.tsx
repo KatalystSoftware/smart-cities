@@ -56,7 +56,7 @@ const Gallery: NextPage = () => {
             <DropdownMenu.Trigger asChild>
               <button
                 aria-label="Imagine..."
-                className="absolute bottom-[calc(4+env(safe-area-inset-bottom))] right-4 rounded-full bg-green-600 p-5 text-green-50 shadow-xl drop-shadow-xl"
+                className="absolute bottom-[calc(theme(space.4)+env(safe-area-inset-bottom))] right-4 rounded-full bg-green-600 p-5 text-green-50 shadow-xl drop-shadow-xl"
               >
                 <PaintBrushIcon />
               </button>
@@ -114,7 +114,7 @@ const Gallery: NextPage = () => {
           <button
             aria-label="Cancel..."
             onClick={() => setImagined(false)}
-            className="absolute bottom-[calc(4+env(safe-area-inset-bottom))] right-4 rounded-full bg-green-600 p-5 text-green-50 shadow-xl drop-shadow-xl"
+            className="absolute bottom-[calc(theme(space.4)+env(safe-area-inset-bottom))] right-4 rounded-full bg-green-600 p-5 text-green-50 shadow-xl drop-shadow-xl"
           >
             <XMarkIcon />
           </button>
