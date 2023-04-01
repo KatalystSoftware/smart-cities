@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-emerald-50;
+    @apply bg-green-50;
   }
 }
