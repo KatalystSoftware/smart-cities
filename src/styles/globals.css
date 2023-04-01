@@ -14,6 +14,6 @@
   }
 
   .navshit {
-    padding-bottom: env(safe-area-inset-bottom) !important;
+    padding-bottom: env(safe-area-inset-bottom, 94px) !important;
   }
 }
