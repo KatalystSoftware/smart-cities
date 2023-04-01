@@ -70,54 +70,67 @@ const OpenStreetMap: React.FC<{
         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      {posts.map((post) => (
+      {Object.entries(
+        posts.reduce<Record<string, Post[]>>((acc, post) => {
+          const key = `${post.latitude}-${post.longtitude}`;
+          return {
+            ...acc,
+            [key]: [...(acc[key] || []), post],
+          };
+        }, {})
+      ).map(([position, posts]) => (
         <Marker
-          key={post.id}
-          position={new LatLng(post.latitude, post.longtitude)}
+          key={position}
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          position={new LatLng(posts.at(0)!.latitude, posts.at(0)!.longtitude)}
         >
           <Popup>
-            <div className="flex w-48 flex-col gap-2">
-              <span className="text-xl font-medium text-green-950">
-                {post.title}
-              </span>
-              <Image
-                src={`/imaginations/${post.image}-${post.variant}.png`}
-                alt={post.image}
-                width={192}
-                height={192}
-              />
-              {!post.likedById.includes(session?.user.id as string) &&
-              !post.dislikedById.includes(session?.user.id as string) ? (
-                <div className="flex gap-2">
-                  <button
-                    disabled={loading}
-                    onClick={() => void ratePost(post.id, true)}
-                    className="text-green-500 disabled:text-gray-500 disabled:opacity-50"
-                  >
-                    <ThumbsUpIcon />
-                    Like
-                  </button>
-                  <button
-                    disabled={loading}
-                    onClick={() => void ratePost(post.id, false)}
-                    className="text-red-500 disabled:text-gray-500 disabled:opacity-50"
-                  >
-                    <ThumbsDownIcon />
-                    Dislike
-                  </button>
-                </div>
-              ) : (
-                <div className="flex gap-2">
-                  <span className="text-green-500">
-                    <ThumbsUpIcon />
-                    {post.likedById.length}
+            <div className="flex h-64 w-48 flex-col gap-2 overflow-y-scroll">
+              {posts.map((post) => (
+                <div key={post.id}>
+                  <span className="text-xl font-medium text-green-950">
+                    {post.title}
                   </span>
-                  <span className="text-red-500">
-                    <ThumbsDownIcon />
-                    {post.dislikedById.length}
-                  </span>
+                  <Image
+                    src={`/imaginations/${post.image}-${post.variant}.png`}
+                    alt={post.image}
+                    width={192}
+                    height={192}
+                  />
+                  {!post.likedById.includes(session?.user.id as string) &&
+                  !post.dislikedById.includes(session?.user.id as string) ? (
+                    <div className="flex gap-2">
+                      <button
+                        disabled={loading}
+                        onClick={() => void ratePost(post.id, true)}
+                        className="text-green-500 disabled:text-gray-500 disabled:opacity-50"
+                      >
+                        <ThumbsUpIcon />
+                        Like
+                      </button>
+                      <button
+                        disabled={loading}
+                        onClick={() => void ratePost(post.id, false)}
+                        className="text-red-500 disabled:text-gray-500 disabled:opacity-50"
+                      >
+                        <ThumbsDownIcon />
+                        Dislike
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex gap-2">
+                      <span className="text-green-500">
+                        <ThumbsUpIcon />
+                        {post.likedById.length}
+                      </span>
+                      <span className="text-red-500">
+                        <ThumbsDownIcon />
+                        {post.dislikedById.length}
+                      </span>
+                    </div>
+                  )}
                 </div>
-              )}
+              ))}
             </div>
           </Popup>
         </Marker>
