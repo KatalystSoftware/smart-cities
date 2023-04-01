@@ -36,7 +36,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <Link href={"/"}>
             <h1 className="inline-flex items-center gap-2">
               <ArrowLeftIcon />
-              {asPath.slice(1).replaceAll("-", " ")}
+              {asPath.split("/").pop()?.replaceAll("-", " ")}
             </h1>
           </Link>
         )}
