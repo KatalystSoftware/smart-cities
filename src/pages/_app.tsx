@@ -44,7 +44,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <main className="fixed top-[theme(space.14)] flex min-h-[calc(100vh-theme(space.14)-theme(space.16))] w-screen flex-col items-center justify-center">
         <Component {...pageProps} />
       </main>
-      <footer className="fixed bottom-0 flex h-16 navshit w-screen items-center justify-center bg-green-600 text-green-950">
+      <footer className="fixed bottom-0 flex h-16 w-screen items-center justify-center bg-green-600 text-green-950 navshit">
         <nav>
           <ul className="flex gap-2">
             <li
